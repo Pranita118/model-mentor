@@ -203,3 +203,8 @@ This project is open-source and available under the MIT License.
 # Author
 
 Developed as part of a machine learning and Flask-based web application project.
+
+
+### Netlify Link
+
+link : model-mentor-ml.netlify.app
