@@ -1,55 +1,205 @@
 # ModelMentor ML
 
-ModelMentor ML is a modern full-stack machine learning and data analytics platform built using Flask and Python, focused on delivering efficient tabular data analysis through a scalable and modular system architecture. The project is designed to bridge data processing, statistical analysis, and lightweight machine learning workflows within an interactive web-based environment.
+A lightweight Flask-based machine learning utility project for tabular data analysis and preprocessing. The project provides REST APIs for dataset summarization, outlier detection, and reusable preprocessing pipelines using Pandas and Scikit-learn.
 
-The platform leverages powerful data science libraries such as pandas, NumPy, and scikit-learn for preprocessing, analytical computation, and model-oriented operations while maintaining optimized backend performance and structured API communication. Its backend architecture follows clean modular design principles, enabling maintainability, scalability, and seamless integration of future machine learning capabilities.
+## Features
 
-The frontend interface is developed using modern web technologies to provide a responsive and intuitive user experience for dataset exploration, analytical visualization, and workflow interaction. By combining RESTful service architecture, structured backend engineering, and interactive frontend design, ModelMentor ML demonstrates practical implementation of machine learning engineering, data analytics, and full-stack development concepts suitable for academic research, prototype systems, and real-world analytical applications.
+* Flask-based backend architecture
+* REST API endpoints for ML utilities
+* Dataset statistical summary generation
+* IQR-based outlier detection
+* Scikit-learn preprocessing pipeline support
+* Modular project structure
+* Easy local setup and deployment
 
 ---
 
 # Tech Stack
 
-* Python
-* Flask
-* pandas
-* NumPy
-* scikit-learn
-* HTML
-* CSS
-* JavaScript
+* **Backend:** Python, Flask
+* **Data Processing:** Pandas, NumPy
+* **Machine Learning Utilities:** Scikit-learn
+* **Frontend:** HTML, CSS, JavaScript
 
 ---
 
-# Setup
+# Installation
+
+## 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/your-username/modelmentor_ml.git
 cd modelmentor_ml
+```
+
+## 2. Create a Virtual Environment
+
+### Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### macOS/Linux
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+## 3. Install Dependencies
+
+```bash
 pip install -r requirements.txt
+```
+
+---
+
+# Run the Project
+
+Start the Flask development server:
+
+```bash
 python run.py
 ```
+
+Server will run at:
+
+```bash
+http://127.0.0.1:5000/
+```
+
+## Dataset Summary
+
+Generate statistical summary of tabular data.
+
+### Endpoint
+
+```http
+POST /api/ml/describe
+```
+
+### Request Body
+
+```json
+{
+  "records": [
+    {
+      "age": 22,
+      "salary": 45000
+    },
+    {
+      "age": 25,
+      "salary": 52000
+    }
+  ]
+}
+```
+
+### Features
+
+* Row and column count
+* Data types
+* Missing value percentage
+* Statistical summary
+
+---
+
+## Outlier Detection (IQR Method)
+
+Detect outliers using the Interquartile Range method.
+
+### Endpoint
+
+```http
+POST /api/ml/outliers-iqr
+```
+
+### Request Body
+
+```json
+{
+  "records": [
+    {
+      "salary": 45000
+    },
+    {
+      "salary": 1000000
+    }
+  ],
+  "column": "salary"
+}
+```
+
+### Response
+
+```json
+{
+  "column": "salary",
+  "outlier_row_indices": [1]
+}
+```
+
+---
+
+# Machine Learning Utilities
+
+The `tabular.py` module includes reusable ML preprocessing helpers:
+
+* DataFrame conversion
+* Dataset description generation
+* IQR-based outlier detection
+* Scikit-learn preprocessing pipeline creation
+
+### Example Pipeline Features
+
+* Missing value imputation
+* Feature scaling
+* One-hot encoding for categorical variables
 
 ---
 
 # Future Improvements
 
-The platform can be further enhanced by integrating advanced machine learning model training, real-time prediction systems, cloud deployment support, user authentication, and more sophisticated analytical dashboards. Additional improvements such as dataset export functionality and advanced visualization modules can further improve scalability and usability.
+* Model training API
+* CSV file upload support
+* Data visualization dashboard
+* Feature engineering utilities
+* Authentication system
+* Deployment using Docker
+
+---
+
+# Requirements
+
+```txt
+flask>=3.0.0
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+```
 
 ---
 
 # Contributing
 
-Contributions are welcome for improving features, optimizing performance, and expanding machine learning capabilities. Fork the repository, make the required changes, and submit a pull request for review.
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
 
 ---
 
 # License
 
-This project is licensed under the MIT License.
+This project is open-source and available under the MIT License.
 
 ---
 
 # Author
 
-Developed as a machine learning and data analysis platform project using Flask, Python, and modern web technologies.
+Developed as part of a machine learning and Flask-based web application project.
